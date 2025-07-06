@@ -11,6 +11,8 @@ dependencies:
     sdk: flutter
   flutter_svg: ^2.0.10
   cupertino_icons: ^1.0.8
+  flutter_lints: ^5.0.0
+  smooth_page_indicator: ^1.2.1
 
 dev_dependencies:
   flutter_test:
@@ -21,3 +23,9 @@ flutter:
 
   assets:
     - assets/images/splash.svg
+    - assets/images/onlinelearning.svg
+    - assets/images/exams.svg
+    - assets/images/certificate.svg
+
+
+
