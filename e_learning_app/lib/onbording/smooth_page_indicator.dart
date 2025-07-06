@@ -1,5 +1,6 @@
 import 'package:e_learning_app/login_page.dart';
 import 'intro_item_data.dart';
+import "../theme/app_colors.dart";
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -18,7 +19,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
   final List<IntroItemData> _pages = const [
     IntroItemData(
       title: "Online Learning",
-      description: "We Provide Classes Online Classes and Pre Recorded Leactures.!",
+      description: "We Provide Classes Online Classes and Pre Recorded Lectures.!",
       imagePath: "assets/images/onlinelearning.svg",
     ),
     IntroItemData(
@@ -34,11 +35,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
   ];
 
   void _skip() {
-    _pageController.animateToPage(
-      _pages.length - 1,
-      duration: const Duration(milliseconds: 500),
-      curve: Curves.easeInOut,
-    );
+    _pageController.jumpToPage(_pages.length - 1);
   }
 
   void _onNext() {
@@ -61,83 +58,109 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
     );
   }
 
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
-
-  Widget buildImage(String path) {
-    return SvgPicture.asset(
-      path,
-      height: 250,
-      fit: BoxFit.contain,
-      placeholderBuilder: (context) => const CircularProgressIndicator(),
+  Widget buildPage(IntroItemData data) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Spacer(),
+        SvgPicture.asset(
+          data.imagePath,
+          height: 200,
+          placeholderBuilder: (context) => const CircularProgressIndicator(),
+        ),
+        const Spacer(),
+        Text(
+          data.title,
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w700,
+            color: Colors.black,
+          ),
+        ),
+        const SizedBox(height: 8),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 32),
+          child: Text(
+            data.description,
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 13, color: Colors.grey),
+          ),
+        ),
+        const SizedBox(height: 40),
+      ],
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: TextButton(
-          onPressed: _skip,
-          child: const Text("Skip"),
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
+      backgroundColor: const Color(0xFFF9FAFB),
+      body: SafeArea(
+        child: Stack(
           children: [
-            Expanded(
-              child: PageView.builder(
-                controller: _pageController,
-                itemCount: _pages.length,
-                onPageChanged: (index) {
-                  setState(() {
-                    _currentIndex = index;
-                  });
-                },
-                itemBuilder: (context, index) {
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      buildImage(_pages[index].imagePath),
-                      const SizedBox(height: 24),
-                      Text(
-                        _pages[index].title,
-                        style: const TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
+            Column(
+              children: [
+                Expanded(
+                  child: PageView.builder(
+                    controller: _pageController,
+                    itemCount: _pages.length,
+                    onPageChanged: (index) {
+                      setState(() {
+                        _currentIndex = index;
+                      });
+                    },
+                    itemBuilder: (context, index) => buildPage(_pages[index]),
+                  ),
+                ),
+                SmoothPageIndicator(
+                  controller: _pageController,
+                  count: _pages.length,
+                  effect: const WormEffect(
+                    dotHeight: 8,
+                    dotWidth: 8,
+                    dotColor:AppColors.lightBlueGray,
+                    activeDotColor: AppColors.navyBlue,
+                  ),
+                ),
+                const SizedBox(height: 32),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: _currentIndex == _pages.length - 1
+                      ? ElevatedButton.icon(
+                          onPressed: _onFinish,
+                            icon: const Icon(Icons.arrow_forward, color: Colors.white),
+                            label: const Text(
+                            "Get Started",
+                            style: TextStyle(color: Colors.white),
+                            ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor:AppColors.navyBlue,
+                            minimumSize: const Size(double.infinity, 50),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                          ),
+                        )
+                      : Align(
+                          alignment: Alignment.centerRight,
+                          child: FloatingActionButton(
+                            onPressed: _onNext,
+                            backgroundColor: AppColors.navyBlue,
+                            child: const Icon(Icons.arrow_forward, color :Colors.white ),
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 12),
-                      Text(
-                        _pages[index].description,
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  );
-                },
-              ),
+                ),
+                const SizedBox(height: 32),
+              ],
             ),
-            SmoothPageIndicator(
-              controller: _pageController,
-              count: _pages.length,
-              effect: const WormEffect(
-                dotHeight: 12,
-                dotWidth: 12,
-                dotColor: Colors.grey,
-                activeDotColor: Colors.blue,
-              ),
-            ),
-            const SizedBox(height: 20),
-            Align(
-              alignment: Alignment.centerRight,
-              child: ElevatedButton(
-                onPressed: _onNext,
-                child: Text(
-                  _currentIndex == _pages.length - 1 ? "Finish" : "Next",
+            Positioned(
+              top: 10,
+              right: 20,
+              child: TextButton(
+                onPressed: _skip,
+                child: const Text(
+                  "Skip",
+                  style: TextStyle(color: Colors.black),
                 ),
               ),
             ),
