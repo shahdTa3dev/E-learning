@@ -1,0 +1,25 @@
+appId: com.example.eLearningApp
+
+---
+
+- launchApp
+- tapOn: "Next"
+- waitForAnimationToEnd
+- tapOn: "Next"
+- waitForAnimationToEnd
+- tapOn: "Finish"
+- waitForAnimationToEnd
+
+- tapOn:
+    id: usernameField
+- inputText: "admin"
+
+- tapOn:
+    id: passwordField
+- inputText: "password"
+
+- tapOn:
+    id: loginButton
+
+- assertVisible:
+    text: Login successful!

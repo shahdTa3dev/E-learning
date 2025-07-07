@@ -25,7 +25,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
     IntroItemData(
       title: "Learn from Anytime",
       description: "Booked or Same the Lectures for Future",
-      imagePath: "assets/images/exams.svg",
+      imagePath: "assets/images/anytime.svg",
     ),
     IntroItemData(
       title: "Get Online Certificate",

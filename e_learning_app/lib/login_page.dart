@@ -42,7 +42,6 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // 👇 Wrap with Semantics for Maestro
               Semantics(
                 identifier: 'usernameField',
                 child: TextField(
