@@ -28,7 +28,7 @@ Functionality:
 
 Design:
 
-1. Add spacing class
+1. Add spacing class....done 
 
 ```dart
 final class Spacing {
