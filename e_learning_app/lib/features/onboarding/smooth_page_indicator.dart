@@ -79,7 +79,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                     child: const Text(
                       "Skip",
                       style: TextStyle(
-                        color: AppColors.navyBlue,
+                        color: AppColors.brightBlue,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -123,14 +123,14 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                 type: WormType.thin,
                 spacing: 8,
                 dotColor: AppColors.lightBlueGray,
-                activeDotColor: AppColors.navyBlue,
+                activeDotColor: AppColors.brightBlue,
               ),
             ),
             _currentIndex == _pages.length - 1
                 ? ElevatedButton(
                     onPressed: _onFinish,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.navyBlue,
+                      backgroundColor: AppColors.brightBlue,
                       minimumSize: const Size(180, 48),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(32),
@@ -155,7 +155,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                   )
                 : FloatingActionButton(
                     onPressed: _onNext,
-                    backgroundColor: AppColors.navyBlue,
+                    backgroundColor: AppColors.brightBlue,
                     elevation: 0,
                     child: const Icon(Icons.arrow_forward, color: Colors.white),
                   ),
