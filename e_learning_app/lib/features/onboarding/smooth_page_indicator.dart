@@ -1,4 +1,4 @@
-// Clean onboarding screen matching the provided design
+// Clean responsive onboarding screen matching the provided design
 
 import 'package:e_learning_app/features/auth/login_page.dart';
 import 'package:e_learning_app/core/constants/app_text_styles.dart';
@@ -64,6 +64,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final media = MediaQuery.of(context);
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: _currentIndex != _pages.length - 1
@@ -95,14 +96,23 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
               physics: const NeverScrollableScrollPhysics(),
               itemCount: _pages.length,
               onPageChanged: (index) => setState(() => _currentIndex = index),
-              itemBuilder: (context, index) => _BuildPage(_pages[index]),
+              itemBuilder: (context, index) => _BuildPage(
+                data: _pages[index],
+                screenHeight: media.size.height,
+              ),
             ),
           ),
         ],
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: Spacing.large, vertical: Spacing.medium),
+        padding: const EdgeInsets.only(
+          left: Spacing.large,
+          right: Spacing.large,
+          top: Spacing.medium,
+          bottom: Spacing.xxxxLarge,
+        ),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SmoothPageIndicator(
               controller: _pageController,
@@ -116,19 +126,19 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                 activeDotColor: AppColors.navyBlue,
               ),
             ),
-            const Spacer(),
             _currentIndex == _pages.length - 1
                 ? ElevatedButton(
                     onPressed: _onFinish,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.navyBlue,
-                      minimumSize: const Size(150, 48),
+                      minimumSize: const Size(180, 48),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(32),
                       ),
                     ),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Text("Get Started", style: TextStyle(color: Colors.white)),
                         const SizedBox(width: Spacing.small),
@@ -143,23 +153,11 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                       ],
                     ),
                   )
-                : Container(
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius: 8,
-                          offset: Offset(0, 2),
-                        ),
-                      ],
-                    ),
-                    child: FloatingActionButton(
-                      onPressed: _onNext,
-                      backgroundColor: AppColors.navyBlue,
-                      elevation: 0,
-                      child: const Icon(Icons.arrow_forward, color: Colors.white),
-                    ),
+                : FloatingActionButton(
+                    onPressed: _onNext,
+                    backgroundColor: AppColors.navyBlue,
+                    elevation: 0,
+                    child: const Icon(Icons.arrow_forward, color: Colors.white),
                   ),
           ],
         ),
@@ -170,34 +168,41 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
 
 class _BuildPage extends StatelessWidget {
   final IntroItemData data;
-  const _BuildPage(this.data);
+  final double screenHeight;
+
+  const _BuildPage({required this.data, required this.screenHeight});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: Spacing.large),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Spacer(),
-          SvgPicture.asset(
-            data.imagePath,
-            height: 200,
-            placeholderBuilder: (context) => const CircularProgressIndicator(),
-          ),
-          const Spacer(),
-          Text(
-            data.title,
-            style: AppTextStyles.title.copyWith(color: AppColors.onSurface),
-          ),
-          const SizedBox(height: Spacing.small),
-          Text(
-            data.description,
-            textAlign: TextAlign.center,
-            style: AppTextStyles.body.copyWith(color: AppColors.onSurfaceVariant),
-          ),
-          const Spacer(),
-        ],
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: Spacing.large),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SvgPicture.asset(
+              data.imagePath,
+              height: screenHeight * 0.28,
+              fit: BoxFit.contain,
+              placeholderBuilder: (context) => const CircularProgressIndicator(),
+            ),
+            const SizedBox(height: Spacing.xxLarge),
+            Text(
+              data.title,
+              style: AppTextStyles.title.copyWith(color: AppColors.onSurface),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: Spacing.small),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: Spacing.medium),
+              child: Text(
+                data.description,
+                textAlign: TextAlign.center,
+                style: AppTextStyles.body.copyWith(color: AppColors.onSurfaceVariant),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
