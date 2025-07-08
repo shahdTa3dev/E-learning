@@ -1,6 +1,6 @@
-import 'package:e_learning_app/login_page.dart';
+import 'package:e_learning_app/features/auth/login_page.dart';
 import 'intro_item_data.dart';
-import "../theme/app_colors.dart";
+import "../../core/theme/app_colors.dart";
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';

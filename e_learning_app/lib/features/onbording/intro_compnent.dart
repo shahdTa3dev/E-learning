@@ -1,4 +1,4 @@
-import 'Intro_item_data.dart';
+import '../../onbording/Intro_item_data.dart';
 import 'package:flutter/material.dart';
 
 class IntroItemWidget extends StatelessWidget {

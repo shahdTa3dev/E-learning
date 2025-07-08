@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../theme/app_colors.dart';
-import '../onbording/smooth_page_indicator.dart'; 
+import 'core/theme/app_colors.dart';
+import 'features/onbording/smooth_page_indicator.dart'; 
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
