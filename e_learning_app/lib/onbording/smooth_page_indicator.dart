@@ -34,9 +34,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
     ),
   ];
 
-  void _skip() {
-    _pageController.jumpToPage(_pages.length - 1);
-  }
+
 
   void _onNext() {
     if (_currentIndex < _pages.length - 1) {
@@ -44,6 +42,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
         duration: const Duration(milliseconds: 500),
         curve: Curves.easeInOut,
       );
+
     } else {
       _onFinish();
     }
@@ -58,38 +57,13 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
     );
   }
 
-  Widget buildPage(IntroItemData data) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Spacer(),
-        SvgPicture.asset(
-          data.imagePath,
-          height: 200,
-          placeholderBuilder: (context) => const CircularProgressIndicator(),
-        ),
-        const Spacer(),
-        Text(
-          data.title,
-          style: const TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w700,
-            color: Colors.black,
-          ),
-        ),
-        const SizedBox(height: 8),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32),
-          child: Text(
-            data.description,
-            textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 13, color: Colors.grey),
-          ),
-        ),
-        const SizedBox(height: 40),
-      ],
-    );
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -109,7 +83,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                         _currentIndex = index;
                       });
                     },
-                    itemBuilder: (context, index) => buildPage(_pages[index]),
+                    itemBuilder: (context, index) => _BuildPage(_pages[index]),
                   ),
                 ),
                 SmoothPageIndicator(
@@ -118,7 +92,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                   effect: const WormEffect(
                     dotHeight: 8,
                     dotWidth: 8,
-                    dotColor:AppColors.lightBlueGray,
+                    dotColor: AppColors.lightBlueGray,
                     activeDotColor: AppColors.navyBlue,
                   ),
                 ),
@@ -126,27 +100,33 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   child: _currentIndex == _pages.length - 1
-                      ? ElevatedButton.icon(
-                          onPressed: _onFinish,
+                      ? Semantics(
+                          label: 'getStartedButton',
+                          child: ElevatedButton.icon(
+                            onPressed: _onFinish,
                             icon: const Icon(Icons.arrow_forward, color: Colors.white),
                             label: const Text(
-                            "Get Started",
-                            style: TextStyle(color: Colors.white),
+                              "Get Started",
+                              style: TextStyle(color: Colors.white),
                             ),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor:AppColors.navyBlue,
-                            minimumSize: const Size(double.infinity, 50),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.navyBlue,
+                              minimumSize: const Size(double.infinity, 50),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(50),
+                              ),
                             ),
                           ),
                         )
                       : Align(
                           alignment: Alignment.centerRight,
-                          child: FloatingActionButton(
-                            onPressed: _onNext,
-                            backgroundColor: AppColors.navyBlue,
-                            child: const Icon(Icons.arrow_forward, color :Colors.white ),
+                          child: Semantics(
+                            label: 'nextButton',
+                            child: FloatingActionButton(
+                              onPressed: _onNext,
+                              backgroundColor: AppColors.navyBlue,
+                              child: const Icon(Icons.arrow_forward, color: Colors.white),
+                            ),
                           ),
                         ),
                 ),
@@ -157,16 +137,55 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
               top: 10,
               right: 20,
               child: TextButton(
-                onPressed: _skip,
-                child: const Text(
-                  "Skip",
+                onPressed: _onNext,
+                child: Text(
+                  _currentIndex == _pages.length - 1 ? "Finish" : "Next",
                   style: TextStyle(color: Colors.black),
                 ),
-              ),
+               ),
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _BuildPage extends StatelessWidget {
+  const _BuildPage(this.data);
+  final IntroItemData data;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Spacer(),
+        SvgPicture.asset(
+          data.imagePath,
+          height: 200,
+          placeholderBuilder: (context) => const CircularProgressIndicator(),
+        ),
+        const Spacer(),
+        Text(
+          data.title,
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w700, 
+            color: Colors.black,
+          ),
+        ),
+        const SizedBox(height: 8),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 32),
+          child: Text(
+            data.description,
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 13, color: Colors.grey),
+          ),
+        ),
+        const SizedBox(height: 40),
+      ],
     );
   }
 }
