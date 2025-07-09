@@ -2,7 +2,7 @@ import 'package:e_learning_app/features/auth/login_page.dart';
 import 'package:e_learning_app/core/constants/app_text_styles.dart';
 import 'package:e_learning_app/core/constants/spacing.dart';
 import 'package:e_learning_app/core/theme/app_colors.dart';
-import 'package:e_learning_app/features/onboarding/intro_item_data.dart';
+import 'package:e_learning_app/features/onboarding/model/intro_item_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -22,17 +22,17 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
     IntroItemData(
       title: "Online Learning",
       description: "We Provide Classes Online Classes and Pre Recorded Lectures.!",
-      imagePath: "assets/images/onlinelearning.svg",
+      imagePath: "assets/images/online.svg",
     ),
     IntroItemData(
       title: "Learn from Anytime",
       description: "Booked or Same the Lectures for Future",
-      imagePath: "assets/images/anytime.svg",
+      imagePath: "assets/images/anytimlearn.svg",
     ),
     IntroItemData(
       title: "Get Online Certificate",
       description: "Analyse your scores and Track your results",
-      imagePath: "assets/images/certificate.svg",
+      imagePath: "assets/images/getcertificate.svg",
     ),
   ];
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:e_learning_app/features/onboarding/intro_item_data.dart';
+import 'package:e_learning_app/features/onboarding/model/intro_item_data.dart';
 
 class IntroItemWidget extends StatelessWidget {
   final IntroItemData data;

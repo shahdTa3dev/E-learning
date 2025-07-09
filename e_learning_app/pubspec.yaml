@@ -27,13 +27,9 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/logo.svg
-    - assets/images/logo.png
-    - assets/images/onlinelearning.svg
-    - assets/images/exams.svg
-    - assets/images/certificate.svg
-    - assets/images/Certification-bro.svg
-    - assets/images/anytime.svg
+    - assets/images/
+    
+
 
 
 flutter_native_splash:
