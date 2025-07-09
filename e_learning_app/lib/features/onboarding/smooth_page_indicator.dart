@@ -1,5 +1,3 @@
-// Clean responsive onboarding screen matching the provided design
-
 import 'package:e_learning_app/features/auth/login_page.dart';
 import 'package:e_learning_app/core/constants/app_text_styles.dart';
 import 'package:e_learning_app/core/constants/spacing.dart';

@@ -13,23 +13,22 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_lints: ^5.0.0
   smooth_page_indicator: ^1.2.1
+  flutter_native_splash: ^2.4.6
+  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_native_splash:
-  color: "#0961F5" # brightBlue
-  image: assets/images/splash_logo.png. #todo Update with your splash logo image path
-  android: true
-  ios: true
-  fullscreen: true
-   
+
+
+
 
 flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/splash.svg
+    - assets/images/logo.svg
+    - assets/images/logo.png
     - assets/images/onlinelearning.svg
     - assets/images/exams.svg
     - assets/images/certificate.svg
@@ -37,6 +36,9 @@ flutter:
     - assets/images/anytime.svg
 
 
-
-
-
+flutter_native_splash:
+  color: "#0961F5"
+  image: assets/images/logo.png
+  android: true
+  ios: true
+  fullscreen: true

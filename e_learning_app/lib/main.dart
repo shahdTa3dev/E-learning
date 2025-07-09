@@ -1,5 +1,5 @@
+import 'package:e_learning_app/features/onboarding/smooth_page_indicator.dart';
 import 'package:flutter/material.dart';
-import 'splash.dart';
 
 
 void main() {
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Telead App',
-      home:SplashScreen(),
+      home:IntroductionScreen(),
     );
   }
 }
