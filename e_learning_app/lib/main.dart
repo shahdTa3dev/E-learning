@@ -1,3 +1,4 @@
+import 'package:e_learning_app/core/theme/app_theme.dart';
 import 'package:e_learning_app/features/onboarding/smooth_page_indicator.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: AppThemes.lightTheme,
       title: 'Telead App',
       home:IntroductionScreen(),
     );

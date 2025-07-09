@@ -5,7 +5,7 @@ import '../constants/font_sizes.dart';
 class AppThemes {
   static ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
-    primaryColor: AppColors.royalBlue,
+    primaryColor: AppColors.brightBlue,
     scaffoldBackgroundColor: AppColors.white,
     appBarTheme: const AppBarTheme(
       backgroundColor: Colors.transparent,
@@ -13,16 +13,16 @@ class AppThemes {
       elevation: 0,
     ),
     colorScheme: const ColorScheme.light(
-      primary: AppColors.royalBlue,
+      primary: AppColors.brightBlue,
       secondary: AppColors.mustard,
       surface: AppColors.white,
-      background: AppColors.paleLavender,
+      surfaceContainer: AppColors.lightBlueGray,
       error: Colors.red,
       onPrimary: AppColors.white,
       onSecondary: AppColors.black,
       onSurface: AppColors.onSurface,
-      onBackground: AppColors.black,
       onError: AppColors.white,
+
     ),
     textTheme: const TextTheme(
       displayLarge: TextStyle(

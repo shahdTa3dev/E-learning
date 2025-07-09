@@ -1,7 +1,6 @@
 import 'package:e_learning_app/features/auth/login_page.dart';
 import 'package:e_learning_app/core/constants/app_text_styles.dart';
 import 'package:e_learning_app/core/constants/spacing.dart';
-import 'package:e_learning_app/core/theme/app_colors.dart';
 import 'package:e_learning_app/features/onboarding/model/intro_item_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -39,7 +38,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
   void _onNext() {
     if (_currentIndex < _pages.length - 1) {
       _pageController.nextPage(
-        duration: const Duration(milliseconds: 500),
+        duration: const Duration(milliseconds:300),
         curve: Curves.easeInOut,
       );
     } else {
@@ -62,9 +61,13 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
+    final colorScheme = theme.colorScheme;
+
     final media = MediaQuery.of(context);
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: colorScheme.surface,
       appBar: _currentIndex != _pages.length - 1
           ? AppBar(
               elevation: 0,
@@ -74,10 +77,10 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: Spacing.medium),
                   child: TextButton(
                     onPressed: _onFinish,
-                    child: const Text(
+                    child:  Text(
                       "Skip",
                       style: TextStyle(
-                        color: AppColors.brightBlue,
+                        color: colorScheme.primary ,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -115,20 +118,20 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
             SmoothPageIndicator(
               controller: _pageController,
               count: _pages.length,
-              effect: const WormEffect(
+              effect: WormEffect(
                 dotHeight: 8,
                 dotWidth: 8,
                 type: WormType.thin,
                 spacing: 8,
-                dotColor: AppColors.lightBlueGray,
-                activeDotColor: AppColors.brightBlue,
+                dotColor: colorScheme.surfaceContainer,
+                activeDotColor: colorScheme.primary,
               ),
             ),
             _currentIndex == _pages.length - 1
                 ? ElevatedButton(
                     onPressed: _onFinish,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.brightBlue,
+                      backgroundColor: colorScheme.primary,
                       minimumSize: const Size(180, 48),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(32),
@@ -138,24 +141,24 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text("Get Started", style: TextStyle(color: Colors.white)),
+                         Text("Get Started", style: textTheme.titleLarge?.copyWith(color: colorScheme.onPrimary)),
                         const SizedBox(width: Spacing.small),
                         Container(
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: colorScheme.onPrimary,
                             borderRadius: BorderRadius.circular(30),
                           ),
-                          padding: const EdgeInsets.all(6),
-                          child: const Icon(Icons.arrow_forward, size: 18, color: AppColors.navyBlue),
+                          padding: const EdgeInsets.all(Spacing.small),
+                          child:  Icon(Icons.arrow_forward, size:Spacing.medium , color: colorScheme.primary),
                         )
                       ],
                     ),
                   )
                 : FloatingActionButton(
                     onPressed: _onNext,
-                    backgroundColor: AppColors.brightBlue,
+                    backgroundColor: colorScheme.primary,
                     elevation: 0,
-                    child: const Icon(Icons.arrow_forward, color: Colors.white),
+                    child:  Icon(Icons.arrow_forward, color: colorScheme.onPrimary),
                   ),
           ],
         ),
@@ -172,6 +175,11 @@ class _BuildPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;  
+   
+
     return Center(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: Spacing.large),
@@ -187,7 +195,7 @@ class _BuildPage extends StatelessWidget {
             const SizedBox(height: Spacing.xxLarge),
             Text(
               data.title,
-              style: AppTextStyles.title.copyWith(color: AppColors.onSurface),
+              style: AppTextStyles.title.copyWith(color:colorScheme.onSurface),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: Spacing.small),
@@ -196,7 +204,7 @@ class _BuildPage extends StatelessWidget {
               child: Text(
                 data.description,
                 textAlign: TextAlign.center,
-                style: AppTextStyles.body.copyWith(color: AppColors.onSurfaceVariant),
+                style: AppTextStyles.body.copyWith(color:colorScheme.onSurfaceVariant),
               ),
             ),
           ],
