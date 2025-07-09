@@ -67,12 +67,10 @@ class AppThemes {
       primary: AppColors.deepPurple,
       secondary: AppColors.mustard,
       surface: Color(0xFF1E1E2C),
-      background: Color(0xFF121212),
       error: Colors.redAccent,
       onPrimary: AppColors.white,
       onSecondary: AppColors.white,
       onSurface: AppColors.white,
-      onBackground: AppColors.white,
       onError: Colors.black,
     ),
     textTheme: const TextTheme(

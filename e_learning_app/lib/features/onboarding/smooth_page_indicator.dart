@@ -3,72 +3,62 @@ import 'package:e_learning_app/core/constants/app_text_styles.dart';
 import 'package:e_learning_app/core/constants/spacing.dart';
 import 'package:e_learning_app/features/onboarding/model/intro_item_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class IntroductionScreen extends StatefulWidget {
+class IntroductionScreen extends HookWidget {
   const IntroductionScreen({super.key});
 
   @override
-  State<IntroductionScreen> createState() => _IntroductionScreenState();
-}
-
-class _IntroductionScreenState extends State<IntroductionScreen> {
-  final PageController _pageController = PageController();
-  int _currentIndex = 0;
-
-  final List<IntroItemData> _pages = const [
-    IntroItemData(
-      title: "Online Learning",
-      description: "We Provide Classes Online Classes and Pre Recorded Lectures.!",
-      imagePath: "assets/images/online.svg",
-    ),
-    IntroItemData(
-      title: "Learn from Anytime",
-      description: "Booked or Same the Lectures for Future",
-      imagePath: "assets/images/anytimlearn.svg",
-    ),
-    IntroItemData(
-      title: "Get Online Certificate",
-      description: "Analyse your scores and Track your results",
-      imagePath: "assets/images/getcertificate.svg",
-    ),
-  ];
-
-  void _onNext() {
-    if (_currentIndex < _pages.length - 1) {
-      _pageController.nextPage(
-        duration: const Duration(milliseconds:300),
-        curve: Curves.easeInOut,
-      );
-    } else {
-      _onFinish();
-    }
-  }
-
-  void _onFinish() {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => const LoginPage()),
-    );
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final textTheme = theme.textTheme;
-    final colorScheme = theme.colorScheme;
+    final pageController = usePageController();
+    final currentIndex = useState(0);
 
+    final List<IntroItemData> pages = const [
+      IntroItemData(
+        title: "Online Learning",
+        description: "We Provide Classes Online Classes and Pre Recorded Lectures.!",
+        imagePath: "assets/images/online.svg",
+      ),
+      IntroItemData(
+        title: "Learn from Anytime",
+        description: "Booked or Same the Lectures for Future",
+        imagePath: "assets/images/anytimlearn.svg",
+      ),
+      IntroItemData(
+        title: "Get Online Certificate",
+        description: "Analyse your scores and Track your results",
+        imagePath: "assets/images/getcertificate.svg",
+      ),
+    ];
+
+    void onFinish() {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const LoginPage()),
+      );
+    }
+
+    void onNext() {
+      if (currentIndex.value < pages.length - 1) {
+        pageController.nextPage(
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeInOut,
+        );
+      } else {
+        onFinish();
+      }
+    }
+
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final textTheme = theme.textTheme;
     final media = MediaQuery.of(context);
+
     return Scaffold(
       backgroundColor: colorScheme.surface,
-      appBar: _currentIndex != _pages.length - 1
+      appBar: currentIndex.value != pages.length - 1
           ? AppBar(
               elevation: 0,
               backgroundColor: Colors.transparent,
@@ -76,11 +66,11 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: Spacing.medium),
                   child: TextButton(
-                    onPressed: _onFinish,
-                    child:  Text(
+                    onPressed: onFinish,
+                    child: Text(
                       "Skip",
                       style: TextStyle(
-                        color: colorScheme.primary ,
+                        color: colorScheme.primary,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -93,12 +83,12 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
         children: [
           Expanded(
             child: PageView.builder(
-              controller: _pageController,
+              controller: pageController,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: _pages.length,
-              onPageChanged: (index) => setState(() => _currentIndex = index),
+              itemCount: pages.length,
+              onPageChanged: (index) => currentIndex.value = index,
               itemBuilder: (context, index) => _BuildPage(
-                data: _pages[index],
+                data: pages[index],
                 screenHeight: media.size.height,
               ),
             ),
@@ -116,8 +106,8 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SmoothPageIndicator(
-              controller: _pageController,
-              count: _pages.length,
+              controller: pageController,
+              count: pages.length,
               effect: WormEffect(
                 dotHeight: 8,
                 dotWidth: 8,
@@ -127,9 +117,9 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                 activeDotColor: colorScheme.primary,
               ),
             ),
-            _currentIndex == _pages.length - 1
+            currentIndex.value == pages.length - 1
                 ? ElevatedButton(
-                    onPressed: _onFinish,
+                    onPressed: onFinish,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: colorScheme.primary,
                       minimumSize: const Size(180, 48),
@@ -141,7 +131,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                         Text("Get Started", style: textTheme.titleLarge?.copyWith(color: colorScheme.onPrimary)),
+                        Text("Get Started", style: textTheme.titleMedium?.copyWith(color: colorScheme.onPrimary)),
                         const SizedBox(width: Spacing.small),
                         Container(
                           decoration: BoxDecoration(
@@ -149,16 +139,16 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
                             borderRadius: BorderRadius.circular(30),
                           ),
                           padding: const EdgeInsets.all(Spacing.small),
-                          child:  Icon(Icons.arrow_forward, size:Spacing.medium , color: colorScheme.primary),
+                          child: Icon(Icons.arrow_forward, size: Spacing.medium, color: colorScheme.primary),
                         )
                       ],
                     ),
                   )
                 : FloatingActionButton(
-                    onPressed: _onNext,
+                    onPressed: onNext,
                     backgroundColor: colorScheme.primary,
                     elevation: 0,
-                    child:  Icon(Icons.arrow_forward, color: colorScheme.onPrimary),
+                    child: Icon(Icons.arrow_forward, color: colorScheme.onPrimary),
                   ),
           ],
         ),
@@ -175,10 +165,8 @@ class _BuildPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;  
-   
+    final colorScheme = theme.colorScheme;
 
     return Center(
       child: Padding(
@@ -195,7 +183,7 @@ class _BuildPage extends StatelessWidget {
             const SizedBox(height: Spacing.xxLarge),
             Text(
               data.title,
-              style: AppTextStyles.title.copyWith(color:colorScheme.onSurface),
+              style: AppTextStyles.title.copyWith(color: colorScheme.onSurface),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: Spacing.small),
@@ -204,7 +192,7 @@ class _BuildPage extends StatelessWidget {
               child: Text(
                 data.description,
                 textAlign: TextAlign.center,
-                style: AppTextStyles.body.copyWith(color:colorScheme.onSurfaceVariant),
+                style: AppTextStyles.body.copyWith(color: colorScheme.onSurfaceVariant),
               ),
             ),
           ],
