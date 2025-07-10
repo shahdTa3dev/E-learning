@@ -1,24 +1,33 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:e_learning_app/features/auth/login_page.dart';
 import 'package:e_learning_app/core/constants/app_text_styles.dart';
 import 'package:e_learning_app/core/constants/spacing.dart';
 import 'package:e_learning_app/features/onboarding/model/intro_item_data.dart';
+import 'package:e_learning_app/features/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+@RoutePage()
 class IntroductionScreen extends HookWidget {
   const IntroductionScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final textTheme = theme.textTheme;
+    final media = MediaQuery.of(context);
+
     final pageController = usePageController();
     final currentIndex = useState(0);
 
     final List<IntroItemData> pages = const [
       IntroItemData(
         title: "Online Learning",
-        description: "We Provide Classes Online Classes and Pre Recorded Lectures.!",
+        description:
+            "We Provide Classes Online Classes and Pre Recorded Lectures.!",
         imagePath: "assets/images/online.svg",
       ),
       IntroItemData(
@@ -34,10 +43,8 @@ class IntroductionScreen extends HookWidget {
     ];
 
     void onFinish() {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const LoginPage()),
-      );
+      // Navigate to the login page when the user finishes the introduction
+      context.router.replace(const LoginRoute());
     }
 
     void onNext() {
@@ -51,11 +58,6 @@ class IntroductionScreen extends HookWidget {
       }
     }
 
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    final textTheme = theme.textTheme;
-    final media = MediaQuery.of(context);
-
     return Scaffold(
       backgroundColor: colorScheme.surface,
       appBar: currentIndex.value != pages.length - 1
@@ -64,7 +66,8 @@ class IntroductionScreen extends HookWidget {
               backgroundColor: Colors.transparent,
               actions: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: Spacing.medium),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: Spacing.medium),
                   child: TextButton(
                     onPressed: onFinish,
                     child: Text(
@@ -131,7 +134,9 @@ class IntroductionScreen extends HookWidget {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Get Started", style: textTheme.titleMedium?.copyWith(color: colorScheme.onPrimary)),
+                        Text("Get Started",
+                            style: textTheme.titleMedium
+                                ?.copyWith(color: colorScheme.onPrimary)),
                         const SizedBox(width: Spacing.small),
                         Container(
                           decoration: BoxDecoration(
@@ -139,7 +144,8 @@ class IntroductionScreen extends HookWidget {
                             borderRadius: BorderRadius.circular(30),
                           ),
                           padding: const EdgeInsets.all(Spacing.small),
-                          child: Icon(Icons.arrow_forward, size: Spacing.medium, color: colorScheme.primary),
+                          child: Icon(Icons.arrow_forward,
+                              size: Spacing.medium, color: colorScheme.primary),
                         )
                       ],
                     ),
@@ -148,7 +154,8 @@ class IntroductionScreen extends HookWidget {
                     onPressed: onNext,
                     backgroundColor: colorScheme.primary,
                     elevation: 0,
-                    child: Icon(Icons.arrow_forward, color: colorScheme.onPrimary),
+                    child:
+                        Icon(Icons.arrow_forward, color: colorScheme.onPrimary),
                   ),
           ],
         ),
@@ -178,7 +185,8 @@ class _BuildPage extends StatelessWidget {
               data.imagePath,
               height: screenHeight * 0.28,
               fit: BoxFit.contain,
-              placeholderBuilder: (context) => const CircularProgressIndicator(),
+              placeholderBuilder: (context) =>
+                  const CircularProgressIndicator(),
             ),
             const SizedBox(height: Spacing.xxLarge),
             Text(
@@ -192,7 +200,8 @@ class _BuildPage extends StatelessWidget {
               child: Text(
                 data.description,
                 textAlign: TextAlign.center,
-                style: AppTextStyles.body.copyWith(color: colorScheme.onSurfaceVariant),
+                style: AppTextStyles.body
+                    .copyWith(color: colorScheme.onSurfaceVariant),
               ),
             ),
           ],

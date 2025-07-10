@@ -15,11 +15,15 @@ dependencies:
   smooth_page_indicator: ^1.2.1
   flutter_native_splash: ^2.4.6
   flutter_hooks: ^0.21.2
+  auto_route: ^10.1.0+1
+ 
   
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  auto_route_generator: ^10.2.3
+  build_runner: ^2.5.4
 
 
 

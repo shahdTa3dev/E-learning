@@ -1,32 +1,30 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:e_learning_app/features/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:e_learning_app/core/constants/spacing.dart';
 
 @RoutePage()
-class LoginPage extends HookWidget {
-  const LoginPage({super.key});
+class RegisterPage extends HookWidget {
+  const RegisterPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     final email = useTextEditingController();
     final password = useTextEditingController();
-    final rememberMe = useState(false);
+    final agreed = useState(false);
 
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: Spacing.large),
+          padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Spacer(),
-              Image.asset('assets/images/telead.svg', height:Spacing.huge),
+              Image.asset('assets/images/telead.svg', height: 80),
               const SizedBox(height: 16),
-              const Text("Let’s Sign In.!", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+              const Text("Getting Started.!", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
               const SizedBox(height: 8),
-              const Text("Login to your account to continue your courses."),
+              const Text("Create an account to continue your allCourses."),
               const SizedBox(height: 32),
               TextField(
                 controller: email,
@@ -46,22 +44,25 @@ class LoginPage extends HookWidget {
                   border: OutlineInputBorder(),
                 ),
               ),
+              const SizedBox(height: 12),
               Row(
                 children: [
                   Checkbox(
-                    value: rememberMe.value,
-                    onChanged: (v) => rememberMe.value = v ?? false,
+                    value: agreed.value,
+                    onChanged: (v) => agreed.value = v ?? false,
                   ),
-                  const Text("Remember Me"),
-                  const Spacer(),
-                  TextButton(onPressed: () {}, child: const Text("Forgot Password?")),
+                  const Text("Agree to Terms & Conditions"),
                 ],
               ),
               const SizedBox(height: 16),
               ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  if (agreed.value) {
+                  
+                  }
+                },
                 icon: const Icon(Icons.arrow_forward),
-                label: const Text("Sign In"),
+                label: const Text("Sign Up"),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,
                   minimumSize: const Size(double.infinity, 50),
@@ -74,15 +75,15 @@ class LoginPage extends HookWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset('assets/images/google.svg', height:Spacing.xLarge),
+                  Image.asset('assets/images/google.svg', height: 36),
                   const SizedBox(width: 16),
                   Image.asset('assets/images/apple.svg', height: 36),
                 ],
               ),
               const Spacer(),
               TextButton(
-                onPressed: () => context.router.push(const RegisterRoute()),
-                child: const Text("Don’t have an account? SIGN UP"),
+                onPressed: () => context.router.pop(),
+                child: const Text("Already have an account? SIGN IN"),
               ),
             ],
           ),
