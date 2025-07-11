@@ -7,6 +7,7 @@ class AppColors {
   static const Color mustard = Color(0xFFEDAA03);
   static const Color yellow = Color(0xFFFEBC00); 
   static const Color paleCyan = Color(0xFFDFEAEF);
+  static const Color lightCyan = Color(0xFFE8F1FF);
   static const Color black = Color(0xFF000000);
   static const Color brightBlue = Color(0xFF0961F5);
   static const Color deepPurple = Color(0xFF332DA1);
