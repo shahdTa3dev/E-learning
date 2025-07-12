@@ -6,6 +6,7 @@ import '../../../../core/constants/app_text_styles.dart';
 import '../../../../core/constants/spacing.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../features/router/app_router.dart';
+import '../../../core/widgets/primary_button.dart';
 
 @RoutePage()
 class LoginPage extends HookWidget {
@@ -44,28 +45,43 @@ class LoginPage extends HookWidget {
                   const SizedBox(height: Spacing.large),
                   TextField(
                     controller: email,
-                    decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.email),
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.email_outlined),
                       hintText: 'Email',
-                      border: OutlineInputBorder(),
+                      border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      filled: true,
+                      fillColor: Colors.white,
                     ),
                   ),
                   const SizedBox(height: Spacing.medium),
-                  TextField(
+                    TextField(
                     controller: password,
                     obscureText: true,
-                    decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.lock),
+                    decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.lock_outline),
                       hintText: 'Password',
-                      border: OutlineInputBorder(),
+                      border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      filled: true,
+                      fillColor: Colors.white,
+                      ),
+                     
                     ),
-                  ),
+                
                   Row(
                     children: [
-                      Checkbox(
+                        Checkbox(
                         value: rememberMe.value,
                         onChanged: (v) => rememberMe.value = v ?? false,
-                      ),
+                        side: BorderSide(color: AppColors.tealGreen, width: 2.0),
+                        activeColor: AppColors.tealGreen, 
+                        checkColor: Colors.white, 
+                        ),
                       const Text("Remember Me"),
                       const Spacer(),
                       TextButton(
@@ -75,16 +91,16 @@ class LoginPage extends HookWidget {
                     ],
                   ),
                   const SizedBox(height: Spacing.medium),
-                  ElevatedButton.icon(
-                    onPressed: () {},
-                    icon: const Icon(Icons.arrow_forward),
-                    label: const Text("Sign In"),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.navyBlue,
-                      minimumSize: const Size(double.infinity, 50),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
-                    ),
+
+
+                  PrimaryButton(
+                    text: " Sign In",
+                    onPressed: () {
+                      // Handle login logic here
+                      // context.router.push(const HomeRoute());
+                    },
                   ),
+
                   const SizedBox(height: Spacing.xLarge),
                   const Text("Or Continue With"),
                   const SizedBox(height: Spacing.medium),
@@ -106,7 +122,7 @@ class LoginPage extends HookWidget {
             ),
           ),
         ),
-      ),
-    );
+    ),
+    );  
   }
 }

@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../core/constants/app_text_styles.dart';
 import '../../../../core/constants/spacing.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../core/widgets/primary_button.dart';
 
 @RoutePage()
 class RegisterPage extends HookWidget {
@@ -41,22 +42,32 @@ class RegisterPage extends HookWidget {
                   const SizedBox(height: Spacing.large),
                   TextField(
                     controller: email,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       prefixIcon: Icon(Icons.email),
                       hintText: 'Email',
-                      border: OutlineInputBorder(),
+                        border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      filled: true,
+                      fillColor: Colors.white,
                     ),
                   ),
                   const SizedBox(height: Spacing.medium),
-                  TextField(
+                    TextField(
                     controller: password,
                     obscureText: true,
-                    decoration: const InputDecoration(
+                    decoration:InputDecoration(
                       prefixIcon: Icon(Icons.lock),
                       hintText: 'Password',
-                      border: OutlineInputBorder(),
+                      border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      filled: true,
+                      fillColor: Colors.white,
                     ),
-                  ),
+                    ),
                   const SizedBox(height: Spacing.small),
                   Row(
                     children: [
@@ -68,19 +79,13 @@ class RegisterPage extends HookWidget {
                     ],
                   ),
                   const SizedBox(height: Spacing.medium),
-                  ElevatedButton.icon(
+                  PrimaryButton(
+                    text: "Sign Up",
                     onPressed: () {
                       if (agreed.value) {
                         // Handle sign up
                       }
-                    },
-                    icon: const Icon(Icons.arrow_forward),
-                    label: const Text("Sign Up"),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.navyBlue,
-                      minimumSize: const Size(double.infinity, 50),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
-                    ),
+                    }
                   ),
                   const SizedBox(height: Spacing.xLarge),
                   const Text("Or Continue With"),

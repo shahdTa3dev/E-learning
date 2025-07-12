@@ -17,6 +17,7 @@ class AppColors {
   static const Color lightGray = Color(0xFFFDEFEF);
   static const Color white = Color(0xFFFFFFFF);
   static const Color tealGreen = Color(0xFF167F71);
+  static const Color lightGreen = Color(0xFFB2E4C9);
   static const Color onSurface = Color(0xFF202244);
   static const Color onSurfaceVariant = Color(0xFF545454);
 }
