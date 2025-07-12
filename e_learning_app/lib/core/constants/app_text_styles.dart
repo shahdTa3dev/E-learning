@@ -14,6 +14,12 @@ final class AppTextStyles {
     color: AppColors.onSurfaceVariant,
   );
 
+  static const TextStyle button = TextStyle(
+    fontSize: AppFontSizes.base,
+    fontWeight: FontWeight.w600,
+    color: AppColors.white,
+  );
+
   static const TextStyle body = TextStyle(
     fontSize: AppFontSizes.base,
     color: AppColors.black,

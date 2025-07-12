@@ -11,6 +11,22 @@
 part of 'app_router.dart';
 
 /// generated route for
+/// [FillProfilePage]
+class FillProfileRoute extends PageRouteInfo<void> {
+  const FillProfileRoute({List<PageRouteInfo>? children})
+      : super(FillProfileRoute.name, initialChildren: children);
+
+  static const String name = 'FillProfileRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const FillProfilePage();
+    },
+  );
+}
+
+/// generated route for
 /// [IntroductionScreen]
 class IntroductionRoute extends PageRouteInfo<void> {
   const IntroductionRoute({List<PageRouteInfo>? children})

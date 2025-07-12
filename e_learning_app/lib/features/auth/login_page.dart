@@ -7,6 +7,7 @@ import '../../../../core/constants/spacing.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../features/router/app_router.dart';
 import '../../../core/widgets/primary_button.dart';
+import '../../../core/widgets/input_field.dart';
 
 @RoutePage()
 class LoginPage extends HookWidget {
@@ -33,43 +34,40 @@ class LoginPage extends HookWidget {
                   const Spacer(),
                   SvgPicture.asset('assets/images/telead.svg', height: 80),
                   const SizedBox(height: Spacing.medium),
-                  Text("Let’s Sign In.!",
-                   style: AppTextStyles.title),
-                  const SizedBox(
-                    height: Spacing.small),
-                  Text(
-                    "Login to your account to continue your courses.",
-                    style: AppTextStyles.body,
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: Spacing.large),
-                  TextField(
-                    controller: email,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.email_outlined),
-                      hintText: 'Email',
-                      border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      filled: true,
-                      fillColor: Colors.white,
+
+                    Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Let’s Sign In.!",
+                      style: AppTextStyles.title,
                     ),
+                    ),
+
+                    const SizedBox(height: Spacing.small),
+
+                    Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Login to your account to continue your courses.",
+                      style: AppTextStyles.body,
+                      textAlign: TextAlign.left,
+                    ),
+                    ),
+
+                  const SizedBox(height: Spacing.large),
+                  InputField(
+                    controller: email,
+                    hintText: 'Email',
+                    prefixIcon: Icons.email_outlined,
                   ),
+
                   const SizedBox(height: Spacing.medium),
-                    TextField(
-                    controller: password,
+
+                  InputField(
+                    controller: password, 
+                    hintText: 'Password',
+                    prefixIcon: Icons.lock_outline, 
                     obscureText: true,
-                    decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.lock_outline),
-                      hintText: 'Password',
-                      border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      filled: true,
-                      fillColor: Colors.white,
-                      ),
                      
                     ),
                 
@@ -82,6 +80,7 @@ class LoginPage extends HookWidget {
                         activeColor: AppColors.tealGreen, 
                         checkColor: Colors.white, 
                         ),
+                        
                       const Text("Remember Me"),
                       const Spacer(),
                       TextButton(
@@ -97,7 +96,7 @@ class LoginPage extends HookWidget {
                     text: " Sign In",
                     onPressed: () {
                       // Handle login logic here
-                      // context.router.push(const HomeRoute());
+                      context.router.push(const FillProfileRoute());
                     },
                   ),
 
