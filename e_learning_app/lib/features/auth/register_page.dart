@@ -7,6 +7,7 @@ import '../../../../core/constants/spacing.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../core/widgets/primary_button.dart';
 import '../../../core/widgets/input_field.dart';
+import '../../../core/widgets/continue_with_section.dart';
 
 @RoutePage()
 class RegisterPage extends HookWidget {
@@ -101,19 +102,8 @@ class RegisterPage extends HookWidget {
                   ),
                   const SizedBox(height: Spacing.xLarge),
                   
-                  const Text("Or Continue With"),
-                  const SizedBox(height: Spacing.medium),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    
-                    children: [
-                      SvgPicture.asset('assets/images/google.svg', height: 36),
-                      const SizedBox(width: Spacing.xLarge),
-                      SvgPicture.asset('assets/images/apple.svg', height: 36),
-                    ],
+                  const ContinueWithSection(),
 
-
-                  ),
                   const Spacer(),
                   TextButton(
                     onPressed: () => context.router.pop(),

@@ -8,6 +8,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../features/router/app_router.dart';
 import '../../../core/widgets/primary_button.dart';
 import '../../../core/widgets/input_field.dart';
+import '../../../core/widgets/continue_with_section.dart';
 
 @RoutePage()
 class LoginPage extends HookWidget {
@@ -89,6 +90,8 @@ class LoginPage extends HookWidget {
                       ),
                     ],
                   ),
+
+
                   const SizedBox(height: Spacing.medium),
 
 
@@ -101,27 +104,37 @@ class LoginPage extends HookWidget {
                   ),
 
                   const SizedBox(height: Spacing.xLarge),
-                  const Text("Or Continue With"),
-                  const SizedBox(height: Spacing.medium),
+
+                  const ContinueWithSection(),
+
+                 const Spacer(),
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset('assets/images/google.svg', height: 36),
-                      const SizedBox(width: Spacing.medium),
-                      SvgPicture.asset('assets/images/apple.svg', height: 36),
-                    ],
+                      children: [
+                        const Text("Don’t have an account? "),
+                        GestureDetector(
+                          onTap: () => context.router.push(const RegisterRoute()),
+                          child: Text(
+                            "SIGN UP",
+                            style: AppTextStyles.body.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.navyBlue,
+                              decoration: TextDecoration.underline,
+                            ),
+                          )
+
                   ),
-                  const Spacer(),
-                  TextButton(
-                    onPressed: () => context.router.push(const RegisterRoute()),
-                    child: const Text("Don’t have an account? SIGN UP"),
-                  ),
+
+                 
                 ],
               ),
-            ),
+                ],
+              ),  
           ),
         ),
-    ),
-    );  
-  }
+      ),
+      )
+    );
+  }    
 }
