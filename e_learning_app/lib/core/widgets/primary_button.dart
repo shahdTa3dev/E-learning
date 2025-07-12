@@ -1,57 +1,69 @@
 import 'package:flutter/material.dart';
+import '../constants/spacing.dart';
+import '../theme/app_colors.dart';
+import '../constants/padding.dart';
+import '../constants/font_sizes.dart';
+
 
 class PrimaryButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
 
   const PrimaryButton({
-    Key? key,
+    super.key,
     required this.text,
     required this.onPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        height: 56,
+        height:Spacing.xxxxLarge,
         decoration: BoxDecoration(
-          color: const Color(0xFF0D6EFD), 
+          color:AppColors.brightBlue,
           borderRadius: BorderRadius.circular(40),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.3), // 30% black
-              offset: const Offset(1, 2), // X:1, Y:2
+              color: Colors.black.withOpacity(0.3),
+              offset: const Offset(1, 2),
               blurRadius: 8,
             ),
           ],
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 24),
+        padding: const EdgeInsets.symmetric(horizontal:PaddingSizes.xxSmall),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+          children: [
             Expanded(
-              child: Center(
               child: Text(
                 text,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                textAlign: TextAlign.center,
                 style: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w600,
-                fontSize: 16,
+                  color:AppColors.white,
+                  fontWeight: FontWeight.bold, 
+                  fontSize: AppFontSizes.sm,
+                  height: 2.2,
                 ),
               ),
-              ),
             ),
-            const SizedBox(width: 12),
+            const SizedBox(width:Spacing.medium),
+
             Container(
-              height: 40,
-              width: 40,
+              height:Spacing.xxLarge,
+              width: Spacing.xxLarge,
+              alignment: Alignment.center,
               decoration: const BoxDecoration(
-                color: Colors.white,
+                color:AppColors.white,
                 shape: BoxShape.circle,
               ),
-              child: const Icon(Icons.arrow_forward, color: Color(0xFF0D6EFD)),
+              child: const Icon(Icons.arrow_forward, 
+              color: AppColors.brightBlue, 
+              size:AppFontSizes.xl,
+              ),
             ),
           ],
         ),

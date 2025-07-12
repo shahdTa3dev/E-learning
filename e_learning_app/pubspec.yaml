@@ -16,6 +16,7 @@ dependencies:
   flutter_native_splash: ^2.4.6
   flutter_hooks: ^0.21.2
   auto_route: ^10.1.0+1
+  provider: ^6.1.5
  
   
 

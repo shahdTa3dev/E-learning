@@ -1,5 +1,11 @@
+import 'package:e_learning_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:e_learning_app/features/onboarding/model/intro_item_data.dart';
+import '../../onboarding/model/intro_item_data.dart';
+import '/core/constants/spacing.dart';
+import '/core/constants/padding.dart';
+import '/core/constants/font_sizes.dart';
+
+
 
 class IntroItemWidget extends StatelessWidget {
   final IntroItemData data;
@@ -12,18 +18,24 @@ class IntroItemWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset(data.imagePath, height: 250),
-        const SizedBox(height: 30),
+
+        const SizedBox(height:Spacing.xLarge),
+        
         Text(
           data.title,
-          style: const TextStyle(fontSize: 34, fontWeight: FontWeight.bold),
+          style: const TextStyle(
+            fontSize:AppFontSizes.xl,
+            fontWeight: FontWeight.bold
+            ),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: Spacing.large),
+
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal:PaddingSizes.medium),
           child: Text(
             data.description,
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 20, color: Colors.grey[700]),
+            style: TextStyle(fontSize:AppFontSizes.lg, color:AppColors.onSurfaceVariant),
           ),
         ),
       ],

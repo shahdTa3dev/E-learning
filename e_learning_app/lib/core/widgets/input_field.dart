@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../constants/padding.dart';
+import '../theme/app_colors.dart';
+
 
 class InputField extends StatelessWidget {
   final TextEditingController controller;
@@ -24,14 +27,14 @@ class InputField extends StatelessWidget {
       decoration: InputDecoration(
         prefixIcon: Icon(prefixIcon, color: theme.iconTheme.color),
         hintText: hintText,
-        hintStyle: theme.textTheme.bodyMedium?.copyWith(color: Colors.grey),
+        hintStyle: theme.textTheme.bodyMedium?.copyWith(color: AppColors.onSurfaceVariant),
         border: OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.circular(12.0),
         ),
         filled: true,
-        fillColor: Colors.white,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        fillColor:AppColors.white,
+        contentPadding: const EdgeInsets.symmetric(horizontal:PaddingSizes.small, vertical:PaddingSizes.xSmall),
       ),
     );
   }

@@ -1,10 +1,18 @@
-import 'package:e_learning_app/core/theme/app_theme.dart';
-import 'package:e_learning_app/features/router/app_router.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'core/theme/app_theme.dart';
+import 'core/notifiers/theme_notifier.dart';
+import 'features/router/app_router.dart';
 
+final appRouter = AppRouter();
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => ThemeNotifier(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -12,14 +20,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appRouter = AppRouter();
+    final themeNotifier = Provider.of<ThemeNotifier>(context);
+
     return MaterialApp.router(
-      routerConfig: appRouter.config(),
       debugShowCheckedModeBanner: false,
-      theme: AppThemes.lightTheme,
       title: 'Telead App',
+      routerConfig: appRouter.config(),
+      theme: AppThemes.lightTheme,
+      darkTheme: AppThemes.darkTheme,
+      themeMode: themeNotifier.value,
     );
   }
 }
-
-

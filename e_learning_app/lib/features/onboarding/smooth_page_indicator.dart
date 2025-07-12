@@ -6,11 +6,11 @@ import 'package:e_learning_app/features/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import '../../../core/notifiers/theme_notifier.dart';
 import '../../../core/widgets/primary_button.dart';
-
-
-
 
 @RoutePage()
 class IntroductionScreen extends HookWidget {
@@ -20,33 +20,30 @@ class IntroductionScreen extends HookWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final textTheme = theme.textTheme;
-    final media = MediaQuery.of(context);
-
     final pageController = usePageController();
     final currentIndex = useState(0);
+    final themeNotifier = Provider.of<ThemeNotifier>(context);
 
     final List<IntroItemData> pages = const [
       IntroItemData(
         title: "Online Learning",
         description:
-            "We Provide Classes Online Classes and Pre Recorded Lectures.!",
+            "We Provide Online Classes and Pre-Recorded Lectures!",
         imagePath: "assets/images/online.svg",
       ),
       IntroItemData(
-        title: "Learn from Anytime",
-        description: "Booked or Same the Lectures for Future",
+        title: "Learn Anytime",
+        description: "Book or Save Lectures for Future Reference",
         imagePath: "assets/images/anytimlearn.svg",
       ),
       IntroItemData(
-        title: "Get Online Certificate",
+        title: "Get Certified",
         description: "Analyse your scores and Track your results",
         imagePath: "assets/images/getcertificate.svg",
       ),
     ];
 
     void onFinish() {
-      // Navigate to the login page when the user finishes the introduction
       context.router.replace(const LoginRoute());
     }
 
@@ -68,9 +65,18 @@ class IntroductionScreen extends HookWidget {
               elevation: 0,
               backgroundColor: Colors.transparent,
               actions: [
+                IconButton(
+                  icon: Icon(
+                    themeNotifier.isDark
+                        ? Icons.wb_sunny_outlined
+                        : Icons.nightlight_round,
+                    color: colorScheme.primary,
+                  ),
+                  onPressed: () => themeNotifier.toggleTheme(),
+                ),
                 Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: Spacing.medium),
+                      const EdgeInsets.symmetric(horizontal: Spacing.small),
                   child: TextButton(
                     onPressed: onFinish,
                     child: Text(
@@ -95,7 +101,6 @@ class IntroductionScreen extends HookWidget {
               onPageChanged: (index) => currentIndex.value = index,
               itemBuilder: (context, index) => _BuildPage(
                 data: pages[index],
-                screenHeight: media.size.height,
               ),
             ),
           ),
@@ -109,7 +114,6 @@ class IntroductionScreen extends HookWidget {
           bottom: Spacing.xxxxLarge,
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SmoothPageIndicator(
               controller: pageController,
@@ -123,34 +127,12 @@ class IntroductionScreen extends HookWidget {
                 activeDotColor: colorScheme.primary,
               ),
             ),
+            const Spacer(),
             currentIndex.value == pages.length - 1
-                ? ElevatedButton(
-                    onPressed: onFinish,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: colorScheme.primary,
-                      minimumSize: const Size(180, 48),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(32),
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("Get Started",
-                            style: textTheme.titleMedium
-                                ?.copyWith(color: colorScheme.onPrimary)),
-                        const SizedBox(width: Spacing.small),
-                        Container(
-                          decoration: BoxDecoration(
-                            color: colorScheme.onPrimary,
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          padding: const EdgeInsets.all(Spacing.small),
-                          child: Icon(Icons.arrow_forward,
-                              size: Spacing.medium, color: colorScheme.primary),
-                        )
-                      ],
+                ? Expanded(
+                    child: PrimaryButton(
+                      text: "Get Started",
+                      onPressed: onFinish,
                     ),
                   )
                 : FloatingActionButton(
@@ -169,14 +151,14 @@ class IntroductionScreen extends HookWidget {
 
 class _BuildPage extends StatelessWidget {
   final IntroItemData data;
-  final double screenHeight;
 
-  const _BuildPage({required this.data, required this.screenHeight});
+  const _BuildPage({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final screenHeight = MediaQuery.of(context).size.height;
 
     return Center(
       child: Padding(
@@ -194,7 +176,9 @@ class _BuildPage extends StatelessWidget {
             const SizedBox(height: Spacing.xxLarge),
             Text(
               data.title,
-              style: AppTextStyles.title.copyWith(color: colorScheme.onSurface),
+              style: AppTextStyles.title.copyWith(
+                color: colorScheme.onSurface,
+              ),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: Spacing.small),
@@ -203,8 +187,9 @@ class _BuildPage extends StatelessWidget {
               child: Text(
                 data.description,
                 textAlign: TextAlign.center,
-                style: AppTextStyles.body
-                    .copyWith(color: colorScheme.onSurfaceVariant),
+                style: AppTextStyles.body.copyWith(
+                  color: colorScheme.onSurfaceVariant,
+                ),
               ),
             ),
           ],
