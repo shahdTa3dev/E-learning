@@ -32,7 +32,7 @@ class ContinueWithSection extends StatelessWidget {
 
   Widget _buildSocialIcon(String assetPath) {
     return Container(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
         shape: BoxShape.circle,

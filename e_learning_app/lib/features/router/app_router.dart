@@ -3,6 +3,8 @@ import 'package:e_learning_app/features/auth/fill_profile_page.dart';
 import 'package:e_learning_app/features/auth/login_page.dart';
 import 'package:e_learning_app/features/auth/register_page.dart';
 import 'package:e_learning_app/features/onboarding/smooth_page_indicator.dart';
+import 'package:e_learning_app/home.dart';
+
 
 
 part 'app_router.gr.dart';
@@ -24,5 +26,9 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: FillProfileRoute.page,
         ),
+        AutoRoute(
+          page: HomeRoute.page,
+        ),
+
       ];
 }

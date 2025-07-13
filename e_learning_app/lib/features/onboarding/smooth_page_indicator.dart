@@ -8,9 +8,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
-import '../../../core/notifiers/theme_notifier.dart';
 import '../../../core/widgets/primary_button.dart';
+import '../../../core/widgets/theme_toggle_icon_button.dart';
 
 @RoutePage()
 class IntroductionScreen extends HookWidget {
@@ -22,7 +21,6 @@ class IntroductionScreen extends HookWidget {
     final colorScheme = theme.colorScheme;
     final pageController = usePageController();
     final currentIndex = useState(0);
-    final themeNotifier = Provider.of<ThemeNotifier>(context);
 
     final List<IntroItemData> pages = const [
       IntroItemData(
@@ -60,20 +58,16 @@ class IntroductionScreen extends HookWidget {
 
     return Scaffold(
       backgroundColor: colorScheme.surface,
-      appBar: currentIndex.value != pages.length - 1
-          ? AppBar(
-              elevation: 0,
-              backgroundColor: Colors.transparent,
-              actions: [
-                IconButton(
-                  icon: Icon(
-                    themeNotifier.isDark
-                        ? Icons.wb_sunny_outlined
-                        : Icons.nightlight_round,
-                    color: colorScheme.primary,
-                  ),
-                  onPressed: () => themeNotifier.toggleTheme(),
-                ),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        leading: const Padding(
+          padding: EdgeInsets.only(left: Spacing.medium),
+          child: ThemeToggleIconButton(),
+          
+        ),
+        actions: currentIndex.value != pages.length - 1
+            ? [
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: Spacing.small),
@@ -88,9 +82,9 @@ class IntroductionScreen extends HookWidget {
                     ),
                   ),
                 ),
-              ],
-            )
-          : null,
+              ]
+            : [],
+      ),
       body: Column(
         children: [
           Expanded(
@@ -156,8 +150,7 @@ class _BuildPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
+    final colorScheme = Theme.of(context).colorScheme;
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Center(
