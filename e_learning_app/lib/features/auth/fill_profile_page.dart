@@ -4,13 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import '../../../../core/constants/app_text_styles.dart';
 import '../../../../core/constants/spacing.dart';
 import '../../../features/router/app_router.dart';
 import '../../../core/widgets/primary_button.dart';
 import '../../../core/widgets/input_field.dart';
-import '../../../core/widgets/theme_toggle_icon_button.dart';
 
 @RoutePage()
 class FillProfilePage extends HookWidget {
@@ -97,6 +94,7 @@ class FillProfilePage extends HookWidget {
                 prefixIcon: Icons.person,
                 hintText: 'Full Name',
               ),
+              
               const SizedBox(height: Spacing.medium),
 
               InputField(

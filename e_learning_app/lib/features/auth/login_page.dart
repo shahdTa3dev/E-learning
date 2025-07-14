@@ -72,7 +72,7 @@ class LoginPage extends HookWidget {
                 const SizedBox(height: Spacing.xxLarge),
 
                 InputField(
-                  controller: email,
+                  controller:  email,
                   hintText: 'Email',
                   prefixIcon: Icons.email_outlined,
                 ),
