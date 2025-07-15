@@ -34,7 +34,7 @@ flutter:
 
 flutter_native_splash:
   color: "#0961F5"
-  image: assets/images/logo.png
+  image: assets/images/splash.png
   android: true
   ios: true
   fullscreen: true
@@ -43,10 +43,7 @@ flutter_native_splash:
   web: false
 
   android_12:
-    image: assets/images/logo.png
+    image: assets/images/splash.png
     icon_background_color: "#0961F5"
-    image_dark: assets/images/logo.png
-    icon_background_color_dark: "#121212"
-
 
 

@@ -6,7 +6,6 @@ import '../../../../core/constants/app_text_styles.dart';
 import '../../../../core/constants/spacing.dart';
 import '../../../core/widgets/primary_button.dart';
 import '../../../core/widgets/input_field.dart';
-import '../../../core/widgets/continue_with_section.dart';
 import '../../../core/widgets/theme_toggle_icon_button.dart';
 
 @RoutePage()
@@ -108,10 +107,6 @@ class RegisterPage extends HookWidget {
                     }
                   },
                 ),
-
-                const SizedBox(height: Spacing.xLarge),
-                const ContinueWithSection(),
-
 
                 const SizedBox(height: Spacing.xxxLarge),
 

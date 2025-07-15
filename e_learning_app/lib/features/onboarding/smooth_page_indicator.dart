@@ -105,7 +105,7 @@ class IntroductionScreen extends HookWidget {
           right: Spacing.large,
           top: Spacing.medium,
           bottom: Spacing.xxxxLarge,
-        ),
+        ), 
         child: Row(
           children: [
             SmoothPageIndicator(

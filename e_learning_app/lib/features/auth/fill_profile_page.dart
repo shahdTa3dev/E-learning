@@ -76,6 +76,7 @@ class FillProfilePage extends HookWidget {
                         ? const Icon(Icons.person, size: 50)
                         : null,
                   ),
+                  
                   InkWell(
                     onTap: pickImage,
                     child: CircleAvatar(

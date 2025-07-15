@@ -7,7 +7,6 @@ import '../../../../core/constants/spacing.dart';
 import '../../../features/router/app_router.dart';
 import '../../../core/widgets/primary_button.dart';
 import '../../../core/widgets/input_field.dart';
-import '../../../core/widgets/continue_with_section.dart';
 import '../../../core/widgets/theme_toggle_icon_button.dart';
 
 @RoutePage()
@@ -118,8 +117,6 @@ class LoginPage extends HookWidget {
                   },
                 ),
 
-                const SizedBox(height: Spacing.xLarge),
-                const ContinueWithSection(),
 
                 const SizedBox(height: Spacing.xxxLarge),
 
