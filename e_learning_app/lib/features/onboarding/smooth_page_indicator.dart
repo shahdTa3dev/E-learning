@@ -19,7 +19,7 @@ class IntroductionScreen extends HookWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final pageController = usePageController();
-    final currentIndex = useState(0);
+    final currentIndex = useState(0); 
 
     final List<IntroItemData> pages = const [
       IntroItemData(
@@ -92,7 +92,7 @@ class IntroductionScreen extends HookWidget {
               physics: const NeverScrollableScrollPhysics(),
               itemCount: pages.length,
               onPageChanged: (index) => currentIndex.value = index,
-              itemBuilder: (context, index) => _BuildPage(
+              itemBuilder: (context, index) => _OnboardingPage(
                 data: pages[index],
               ),
             ),
@@ -142,10 +142,10 @@ class IntroductionScreen extends HookWidget {
   }
 }
 
-class _BuildPage extends StatelessWidget {
+class _OnboardingPage extends StatelessWidget {
   final IntroItemData data;
 
-  const _BuildPage({super.key, required this.data});
+  const _OnboardingPage({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {

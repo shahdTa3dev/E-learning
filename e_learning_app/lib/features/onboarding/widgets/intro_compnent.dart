@@ -1,6 +1,6 @@
 import 'package:e_learning_app/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
-import '../../onboarding/model/intro_item_data.dart';
+import '../model/intro_item_data.dart';
 import '/core/constants/spacing.dart';
 import '/core/constants/padding.dart';
 import '/core/constants/font_sizes.dart';
