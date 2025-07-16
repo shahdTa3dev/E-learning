@@ -12,17 +12,28 @@ class AppThemes {
       foregroundColor: AppColors.black,
       elevation: 0,
     ),
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: AppColors.lightBlueGray,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide.none,
+      ),
+      contentPadding: const EdgeInsets.symmetric(
+        vertical: 14,
+        horizontal: 16,
+      ),
+      hintStyle: const TextStyle(color: AppColors.onSurfaceVariant),
+      prefixIconColor: AppColors.navyBlue,
+    ),
     colorScheme: const ColorScheme.light(
       primary: AppColors.brightBlue,
-      secondary: AppColors.mustard,
+      secondary: AppColors.tealGreen,
       surface: AppColors.lavender,
       surfaceContainer: AppColors.lightBlueGray,
-      error: Colors.red,
       onPrimary: AppColors.white,
       onSecondary: AppColors.black,
       onSurface: AppColors.onSurface,
-      onError: AppColors.white,
-
     ),
     textTheme: const TextTheme(
       displayLarge: TextStyle(
@@ -63,9 +74,23 @@ class AppThemes {
       foregroundColor: AppColors.white,
       elevation: 0,
     ),
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: const Color(0xFF2A2A40),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide.none,
+      ),
+      contentPadding: const EdgeInsets.symmetric(
+        vertical: 14,
+        horizontal: 16,
+      ),
+      hintStyle: const TextStyle(color: Colors.grey),
+      prefixIconColor: AppColors.mustard,
+    ),
     colorScheme: const ColorScheme.dark(
       primary: AppColors.deepPurple,
-      secondary: AppColors.mustard,
+      secondary: AppColors.tealGreen,
       surface: Color(0xFF1E1E2C),
       error: Colors.redAccent,
       onPrimary: AppColors.white,

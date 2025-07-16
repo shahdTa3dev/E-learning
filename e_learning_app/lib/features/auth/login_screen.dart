@@ -6,7 +6,6 @@ import '../../../../core/constants/app_text_styles.dart';
 import '../../../../core/constants/spacing.dart';
 import '../../../features/router/app_router.dart';
 import '../../../core/widgets/primary_button.dart';
-import '../../../core/widgets/input_field.dart';
 import '../../../core/widgets/theme_toggle_icon_button.dart';
 
 @RoutePage()
@@ -39,13 +38,11 @@ class LoginPage extends HookWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
-
               children: [
                 const SizedBox(height: Spacing.huge),
 
                 SvgPicture.asset('assets/images/telead.svg', height: 80),
                 const SizedBox(height: Spacing.xxxLarge),
-              
 
                 Align(
                   alignment: Alignment.centerLeft,
@@ -70,18 +67,25 @@ class LoginPage extends HookWidget {
                 ),
                 const SizedBox(height: Spacing.xxLarge),
 
-                InputField(
-                  controller:  email,
-                  hintText: 'Email',
-                  prefixIcon: Icons.email_outlined,
+         
+                TextFormField(
+                  controller: email,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: const InputDecoration(
+                    hintText: 'Email',
+                    prefixIcon: Icon(Icons.email_outlined),
+                  ),
                 ),
                 const SizedBox(height: Spacing.large),
 
-                InputField(
+
+                TextFormField(
                   controller: password,
-                  hintText: 'Password',
-                  prefixIcon: Icons.lock_outline,
                   obscureText: true,
+                  decoration: const InputDecoration(
+                    hintText: 'Password',
+                    prefixIcon: Icon(Icons.lock_outline),
+                  ),
                 ),
                 const SizedBox(height: Spacing.small),
 
@@ -116,7 +120,6 @@ class LoginPage extends HookWidget {
                     context.router.push(const FillProfileRoute());
                   },
                 ),
-
 
                 const SizedBox(height: Spacing.xxxLarge),
 

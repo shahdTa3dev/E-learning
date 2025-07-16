@@ -7,7 +7,6 @@ import 'package:intl/intl.dart';
 import '../../../../core/constants/spacing.dart';
 import '../../../features/router/app_router.dart';
 import '../../../core/widgets/primary_button.dart';
-import '../../../core/widgets/input_field.dart';
 
 @RoutePage()
 class FillProfilePage extends HookWidget {
@@ -23,9 +22,7 @@ class FillProfilePage extends HookWidget {
     final gender = useState<String?>(null);
     final selectedImage = useState<File?>(null);
 
-    final size = MediaQuery.of(context).size;
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
+    final colorScheme = Theme.of(context).colorScheme;
 
     Future<void> pickImage() async {
       final picked = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -62,7 +59,6 @@ class FillProfilePage extends HookWidget {
             children: [
               const SizedBox(height: Spacing.large),
 
-              
               Stack(
                 alignment: Alignment.bottomRight,
                 children: [
@@ -76,7 +72,6 @@ class FillProfilePage extends HookWidget {
                         ? const Icon(Icons.person, size: 50)
                         : null,
                   ),
-                  
                   InkWell(
                     onTap: pickImage,
                     child: CircleAvatar(
@@ -89,84 +84,72 @@ class FillProfilePage extends HookWidget {
               ),
               const SizedBox(height: Spacing.large),
 
-              
-              InputField(
+              TextFormField(
                 controller: fullName,
-                prefixIcon: Icons.person,
-                hintText: 'Full Name',
+                decoration: const InputDecoration(
+                  hintText: 'Full Name',
+                  prefixIcon: Icon(Icons.person),
+                ),
               ),
-              
               const SizedBox(height: Spacing.medium),
 
-              InputField(
+              TextFormField(
                 controller: nickName,
-                prefixIcon: Icons.person_outline,
-                hintText: 'Nick Name',
+                decoration: const InputDecoration(
+                  hintText: 'Nick Name',
+                  prefixIcon: Icon(Icons.person_outline),
+                ),
               ),
               const SizedBox(height: Spacing.medium),
 
               GestureDetector(
                 onTap: pickDate,
                 child: AbsorbPointer(
-                  child: InputField(
+                  child: TextFormField(
                     controller: dob,
-                    prefixIcon: Icons.date_range,
-                    hintText: 'Date of Birth',
+                    decoration: const InputDecoration(
+                      hintText: 'Date of Birth',
+                      prefixIcon: Icon(Icons.date_range),
+                    ),
                   ),
                 ),
               ),
               const SizedBox(height: Spacing.medium),
 
-    
-              InputField(
+              TextFormField(
                 controller: email,
-                prefixIcon: Icons.email,
-                hintText: 'Email',
+                decoration: const InputDecoration(
+                  hintText: 'Email',
+                  prefixIcon: Icon(Icons.email),
+                ),
               ),
               const SizedBox(height: Spacing.medium),
 
-              TextField(
+              TextFormField(
                 controller: phone,
                 keyboardType: TextInputType.phone,
                 decoration: InputDecoration(
+                  hintText: '724-848-1225',
                   prefixIcon: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: const [
                       SizedBox(width: 10),
                       Icon(Icons.flag),
                       SizedBox(width: 6),
-                      Text("(+1)"), // هاي بعدين لازم تصير لسته 
+                      Text("(+1)"),
                       SizedBox(width: 6),
                     ],
                   ),
-                  hintText: '724-848-1225',
-                  filled: true,
-                  fillColor: colorScheme.onPrimary,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide.none,
-                  ),
                 ),
-                style: TextStyle(color: colorScheme.onPrimary),
               ),
               const SizedBox(height: Spacing.medium),
 
-           
               DropdownButtonFormField<String>(
                 value: gender.value,
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.person_outline),
+                decoration: const InputDecoration(
                   hintText: 'Gender',
-                  filled: true,
-                  fillColor: colorScheme.onPrimary,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide.none,
-                  ),
+                  prefixIcon: Icon(Icons.person_outline),
                 ),
-
-
-
                 items: const [
                   DropdownMenuItem(value: 'male', child: Text('Male')),
                   DropdownMenuItem(value: 'female', child: Text('Female')),
@@ -175,7 +158,6 @@ class FillProfilePage extends HookWidget {
               ),
               const SizedBox(height: Spacing.large),
 
-             
               PrimaryButton(
                 text: 'Continue',
                 onPressed: () {
@@ -184,7 +166,6 @@ class FillProfilePage extends HookWidget {
               ),
               const SizedBox(height: Spacing.medium),
 
-            
               TextButton(
                 onPressed: () => context.router.replaceAll([const HomeRoute()]),
                 child: Text(
