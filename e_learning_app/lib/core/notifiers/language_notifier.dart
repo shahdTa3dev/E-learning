@@ -5,12 +5,10 @@ class LanguageNotifier extends ChangeNotifier {
 
   Locale get locale => _locale;
 
-  void toggleLanguage() {
-    if (_locale.languageCode == 'en') {
-      _locale = const Locale('ar');
-    } else {
-      _locale = const Locale('en');
-    }
+  void toggleLocale() {
+    _locale = (_locale.languageCode == 'en')
+        ? const Locale('ar')
+        : const Locale('en');
     notifyListeners();
   }
 

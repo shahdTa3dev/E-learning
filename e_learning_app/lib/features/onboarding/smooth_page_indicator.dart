@@ -11,6 +11,7 @@ import 'package:e_learning_app/l10n/app_localizations.dart';
 
 import '../../../core/widgets/primary_button.dart';
 import '../../../core/widgets/theme_toggle_icon_button.dart';
+import '../../../core/widgets/language_toggle_icon_button.dart';
 
 @RoutePage()
 class IntroductionScreen extends HookWidget {
@@ -56,34 +57,29 @@ class IntroductionScreen extends HookWidget {
         onFinish();
       }
     }
-
-    return Scaffold(
+       return Scaffold(
       backgroundColor: colorScheme.surface,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.transparent,
-        leading: const Padding(
-          padding: EdgeInsets.only(left: Spacing.medium),
-          child: ThemeToggleIconButton(),
-        ),
-        actions: currentIndex.value != pages.length - 1
-            ? [
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: Spacing.small),
-                  child: TextButton(
-                    onPressed: onFinish,
-                    child: Text(
-                      l10n.skip,
-                      style: TextStyle(
-                        color: colorScheme.primary,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
+        leading: const ThemeToggleIconButton(),
+
+        actions: [
+          const LanguageToggleIconButton(),
+          if (currentIndex.value != pages.length - 1)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: Spacing.small),
+              child: TextButton(
+                onPressed: onFinish,
+                child: Text(
+                  l10n.skip,
+                  style: TextStyle(
+                    color: colorScheme.primary,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
-              ]
-            : [],
+              ),
+            ),
+        ],
       ),
       body: Column(
         children: [
