@@ -33,7 +33,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get skip => 'Skip';
 
   @override
-  String get getting_started => 'Getting Started.!';
+  String get getting_started => 'Getting Started!';
 
   @override
   String get login_subtitle =>
@@ -79,4 +79,27 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get fill_profile_subtitle =>
       'Fill your details to personalize your experience.';
+
+  @override
+  String get introTitle1 => 'Learn Online';
+
+  @override
+  String get introDesc1 =>
+      'Access thousands of courses and study anywhere, anytime.';
+
+  @override
+  String get introTitle2 => 'Learn Anytime';
+
+  @override
+  String get introDesc2 =>
+      'Take control of your learning schedule at your own pace.';
+
+  @override
+  String get introTitle3 => 'Get Certified';
+
+  @override
+  String get introDesc3 => 'Earn official certificates to boost your career.';
+
+  @override
+  String get getStarted => 'Get Started';
 }

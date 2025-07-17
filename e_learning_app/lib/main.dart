@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:e_learning_app/l10n/app_localizations.dart';
+
 
 import 'core/theme/app_theme.dart';
 import 'core/notifiers/theme_notifier.dart';

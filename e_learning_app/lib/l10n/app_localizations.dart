@@ -149,7 +149,7 @@ abstract class AppLocalizations {
   /// No description provided for @getting_started.
   ///
   /// In en, this message translates to:
-  /// **'Getting Started.!'**
+  /// **'Getting Started!'**
   String get getting_started;
 
   /// No description provided for @login_subtitle.
@@ -235,6 +235,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Fill your details to personalize your experience.'**
   String get fill_profile_subtitle;
+
+  /// No description provided for @introTitle1.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn Online'**
+  String get introTitle1;
+
+  /// No description provided for @introDesc1.
+  ///
+  /// In en, this message translates to:
+  /// **'Access thousands of courses and study anywhere, anytime.'**
+  String get introDesc1;
+
+  /// No description provided for @introTitle2.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn Anytime'**
+  String get introTitle2;
+
+  /// No description provided for @introDesc2.
+  ///
+  /// In en, this message translates to:
+  /// **'Take control of your learning schedule at your own pace.'**
+  String get introDesc2;
+
+  /// No description provided for @introTitle3.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Certified'**
+  String get introTitle3;
+
+  /// No description provided for @introDesc3.
+  ///
+  /// In en, this message translates to:
+  /// **'Earn official certificates to boost your career.'**
+  String get introDesc3;
+
+  /// No description provided for @getStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Started'**
+  String get getStarted;
 }
 
 class _AppLocalizationsDelegate

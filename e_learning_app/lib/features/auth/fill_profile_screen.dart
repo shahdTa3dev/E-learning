@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:e_learning_app/l10n/app_localizations.dart';
+
 import '../../../../core/constants/spacing.dart';
 import '../../../features/router/app_router.dart';
 import '../../../core/widgets/primary_button.dart';
@@ -14,6 +16,8 @@ class FillProfilePage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     final fullName = useTextEditingController();
     final nickName = useTextEditingController();
     final dob = useTextEditingController();
@@ -48,7 +52,7 @@ class FillProfilePage extends HookWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: const Text('Fill Your Profile'),
+        title: Text(l10n.fill_profile),
         centerTitle: true,
         leading: const BackButton(),
       ),
@@ -86,18 +90,18 @@ class FillProfilePage extends HookWidget {
 
               TextFormField(
                 controller: fullName,
-                decoration: const InputDecoration(
-                  hintText: 'Full Name',
-                  prefixIcon: Icon(Icons.person),
+                decoration: InputDecoration(
+                  hintText: l10n.full_name,
+                  prefixIcon: const Icon(Icons.person),
                 ),
               ),
               const SizedBox(height: Spacing.medium),
 
               TextFormField(
                 controller: nickName,
-                decoration: const InputDecoration(
-                  hintText: 'Nick Name',
-                  prefixIcon: Icon(Icons.person_outline),
+                decoration: InputDecoration(
+                  hintText: l10n.nick_name,
+                  prefixIcon: const Icon(Icons.person_outline),
                 ),
               ),
               const SizedBox(height: Spacing.medium),
@@ -107,9 +111,9 @@ class FillProfilePage extends HookWidget {
                 child: AbsorbPointer(
                   child: TextFormField(
                     controller: dob,
-                    decoration: const InputDecoration(
-                      hintText: 'Date of Birth',
-                      prefixIcon: Icon(Icons.date_range),
+                    decoration: InputDecoration(
+                      hintText: l10n.dob,
+                      prefixIcon: const Icon(Icons.date_range),
                     ),
                   ),
                 ),
@@ -118,9 +122,9 @@ class FillProfilePage extends HookWidget {
 
               TextFormField(
                 controller: email,
-                decoration: const InputDecoration(
-                  hintText: 'Email',
-                  prefixIcon: Icon(Icons.email),
+                decoration: InputDecoration(
+                  hintText: l10n.email,
+                  prefixIcon: const Icon(Icons.email),
                 ),
               ),
               const SizedBox(height: Spacing.medium),
@@ -146,20 +150,20 @@ class FillProfilePage extends HookWidget {
 
               DropdownButtonFormField<String>(
                 value: gender.value,
-                decoration: const InputDecoration(
-                  hintText: 'Gender',
-                  prefixIcon: Icon(Icons.person_outline),
+                decoration: InputDecoration(
+                  hintText: l10n.gender,
+                  prefixIcon: const Icon(Icons.person_outline),
                 ),
-                items: const [
-                  DropdownMenuItem(value: 'male', child: Text('Male')),
-                  DropdownMenuItem(value: 'female', child: Text('Female')),
+                items: [
+                  DropdownMenuItem(value: 'male', child: Text(l10n.male)),
+                  DropdownMenuItem(value: 'female', child: Text(l10n.female)),
                 ],
                 onChanged: (value) => gender.value = value,
               ),
               const SizedBox(height: Spacing.large),
 
               PrimaryButton(
-                text: 'Continue',
+                text: l10n.continueLabel,
                 onPressed: () {
                   context.router.replaceAll([const HomeRoute()]);
                 },
@@ -169,7 +173,7 @@ class FillProfilePage extends HookWidget {
               TextButton(
                 onPressed: () => context.router.replaceAll([const HomeRoute()]),
                 child: Text(
-                  'Skip for now',
+                  l10n.skip_for_now,
                   style: TextStyle(color: colorScheme.primary),
                 ),
               ),

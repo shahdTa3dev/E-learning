@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:e_learning_app/l10n/app_localizations.dart';
+
 import '../../../core/widgets/primary_button.dart';
 import '../../../core/widgets/theme_toggle_icon_button.dart';
 
@@ -20,22 +22,22 @@ class IntroductionScreen extends HookWidget {
     final colorScheme = theme.colorScheme;
     final pageController = usePageController();
     final currentIndex = useState(0); 
+    final l10n = AppLocalizations.of(context)!;
 
-    final List<IntroItemData> pages = const [
+    final List<IntroItemData> pages = [
       IntroItemData(
-        title: "Online Learning",
-        description:
-            "We Provide Online Classes and Pre-Recorded Lectures!",
+        title: l10n.introTitle1,
+        description: l10n.introDesc1,
         imagePath: "assets/images/online.svg",
       ),
       IntroItemData(
-        title: "Learn Anytime",
-        description: "Book or Save Lectures for Future Reference",
+        title: l10n.introTitle2,
+        description: l10n.introDesc2,
         imagePath: "assets/images/anytimlearn.svg",
       ),
       IntroItemData(
-        title: "Get Certified",
-        description: "Analyse your scores and Track your results",
+        title: l10n.introTitle3,
+        description: l10n.introDesc3,
         imagePath: "assets/images/getcertificate.svg",
       ),
     ];
@@ -63,7 +65,6 @@ class IntroductionScreen extends HookWidget {
         leading: const Padding(
           padding: EdgeInsets.only(left: Spacing.medium),
           child: ThemeToggleIconButton(),
-          
         ),
         actions: currentIndex.value != pages.length - 1
             ? [
@@ -73,7 +74,7 @@ class IntroductionScreen extends HookWidget {
                   child: TextButton(
                     onPressed: onFinish,
                     child: Text(
-                      "Skip",
+                      l10n.skip,
                       style: TextStyle(
                         color: colorScheme.primary,
                         fontWeight: FontWeight.w500,
@@ -124,7 +125,7 @@ class IntroductionScreen extends HookWidget {
             currentIndex.value == pages.length - 1
                 ? Expanded(
                     child: PrimaryButton(
-                      text: "Get Started",
+                      text: l10n.getStarted,
                       onPressed: onFinish,
                     ),
                   )

@@ -76,4 +76,26 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get fill_profile_subtitle => 'املأ بياناتك لتجربة أفضل';
+
+  @override
+  String get introTitle1 => 'تعلم عبر الإنترنت';
+
+  @override
+  String get introDesc1 =>
+      'الوصول إلى آلاف الدورات والدراسة في أي وقت ومن أي مكان.';
+
+  @override
+  String get introTitle2 => 'تعلم في أي وقت';
+
+  @override
+  String get introDesc2 => 'تحكم في جدولك الدراسي وتعلم حسب وتيرتك.';
+
+  @override
+  String get introTitle3 => 'احصل على شهادة';
+
+  @override
+  String get introDesc3 => 'احصل على شهادات رسمية لتعزيز مسيرتك المهنية.';
+
+  @override
+  String get getStarted => 'لنبدأ';
 }
