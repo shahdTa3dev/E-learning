@@ -68,20 +68,20 @@ class FillProfilePage extends HookWidget {
                 children: [
                   CircleAvatar(
                     radius: 50,
-                    backgroundColor: Colors.grey[300],
+                    backgroundColor: colorScheme.primary.withOpacity(0.1),
                     backgroundImage: selectedImage.value != null
                         ? FileImage(selectedImage.value!)
                         : null,
                     child: selectedImage.value == null
-                        ? const Icon(Icons.person, size: 50)
+                        ? Icon(Icons.person, size: 50, color:colorScheme.primary)
                         : null,
                   ),
                   InkWell(
                     onTap: pickImage,
                     child: CircleAvatar(
                       radius: 16,
-                      backgroundColor: colorScheme.primary,
-                      child: const Icon(Icons.edit, size: 16, color: Colors.white),
+                      backgroundColor: colorScheme.secondary,
+                      child:Icon(Icons.edit, size:16,color:colorScheme.onPrimary),
                     ),
                   ),
                 ],

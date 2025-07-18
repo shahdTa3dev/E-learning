@@ -60,8 +60,11 @@ class IntroductionScreen extends HookWidget {
        return Scaffold(
       backgroundColor: colorScheme.surface,
       appBar: AppBar(
-        elevation: 0,
-        leading: const ThemeToggleIconButton(),
+         elevation: 0,
+        leading: const Padding(
+          padding: EdgeInsets.only(left: Spacing.medium),
+          child: ThemeToggleIconButton(),
+        ),
 
         actions: [
           const LanguageToggleIconButton(),

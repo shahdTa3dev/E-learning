@@ -26,6 +26,7 @@ class AppThemes {
       hintStyle: const TextStyle(color: AppColors.onSurfaceVariant),
       prefixIconColor: AppColors.navyBlue,
     ),
+
     colorScheme: const ColorScheme.light(
       primary: AppColors.brightBlue,
       secondary: AppColors.tealGreen,
@@ -65,6 +66,8 @@ class AppThemes {
     ),
   );
 
+
+
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     primaryColor: AppColors.deepPurple,
@@ -89,10 +92,10 @@ class AppThemes {
       prefixIconColor: AppColors.mustard,
     ),
     colorScheme: const ColorScheme.dark(
-      primary: AppColors.deepPurple,
-      secondary: AppColors.tealGreen,
+      primary: AppColors.yellow,
+      secondary: AppColors.brightBlue,
       surface: Color(0xFF1E1E2C),
-      error: Colors.redAccent,
+      surfaceContainer: AppColors.white,
       onPrimary: AppColors.white,
       onSecondary: AppColors.white,
       onSurface: AppColors.white,

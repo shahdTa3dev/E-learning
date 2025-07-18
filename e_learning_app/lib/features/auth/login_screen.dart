@@ -19,6 +19,7 @@ class LoginPage extends HookWidget {
     final email = useTextEditingController();
     final password = useTextEditingController();
     final rememberMe = useState(false);
+    final isPasswordVisible = useState(false);
 
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
@@ -28,7 +29,6 @@ class LoginPage extends HookWidget {
       backgroundColor: colorScheme.surface,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.transparent,
         leading: const Padding(
           padding: EdgeInsets.only(left: Spacing.medium),
           child: ThemeToggleIconButton(),
@@ -47,56 +47,67 @@ class LoginPage extends HookWidget {
                 const SizedBox(height: Spacing.xxxLarge),
 
                 Align(
-                  alignment: Alignment.centerLeft,
+                  alignment: AlignmentDirectional.centerStart,
                   child: Text(
                     tr.sign_in,
                     style: AppTextStyles.title.copyWith(
                       color: colorScheme.onSurface,
                     ),
+                    textAlign: TextAlign.start,
                   ),
                 ),
                 const SizedBox(height: Spacing.small),
 
                 Align(
-                  alignment: Alignment.centerLeft,
+                  alignment: AlignmentDirectional.centerStart,
                   child: Text(
                     tr.login_subtitle,
                     style: AppTextStyles.body.copyWith(
                       color: colorScheme.onSurfaceVariant,
                     ),
-                    textAlign: TextAlign.left,
+                    textAlign: TextAlign.start,
                   ),
                 ),
                 const SizedBox(height: Spacing.xxLarge),
 
-                TextField(
+                TextFormField(
                   controller: email,
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.email_outlined),
                     hintText: tr.email,
-                    filled: true,
-                    fillColor: colorScheme.onPrimary,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide.none,
                     ),
                   ),
+                  keyboardType: TextInputType.emailAddress,
+                  textAlign: TextAlign.start,
                 ),
                 const SizedBox(height: Spacing.large),
 
-                TextField(
+                TextFormField(
                   controller: password,
-                  obscureText: true,
+                  obscureText: !isPasswordVisible.value,
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.lock_outline),
                     hintText: tr.password,
-                    filled: true,
-                    fillColor: colorScheme.onPrimary,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide.none,
                     ),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        isPasswordVisible.value
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                        color: colorScheme.onSurface,
+                      ),
+                      onPressed: () {
+                        isPasswordVisible.value = !isPasswordVisible.value;
+                      },
+                    ),
                   ),
+                  textAlign: TextAlign.start,
                 ),
                 const SizedBox(height: Spacing.small),
 
@@ -137,7 +148,7 @@ class LoginPage extends HookWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "${tr.skip} ",
+                      "${tr.dont_have_acount} ",
                       style: TextStyle(color: colorScheme.onSurface),
                     ),
                     GestureDetector(

@@ -102,4 +102,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get getStarted => 'Get Started';
+
+  @override
+  String get have_acount => 'Already have an Account?';
+
+  @override
+  String get dont_have_acount => 'Don’t have an Account?';
 }

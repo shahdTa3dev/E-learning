@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import '../constants/spacing.dart';
-import '../theme/app_colors.dart';
 import '../constants/padding.dart';
 import '../constants/font_sizes.dart';
-
 
 class PrimaryButton extends StatelessWidget {
   final String text;
@@ -17,12 +15,14 @@ class PrimaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        height:Spacing.xxxxLarge,
+        height: Spacing.xxxxLarge,
         decoration: BoxDecoration(
-          color:AppColors.brightBlue,
+          color: colorScheme.primary,
           borderRadius: BorderRadius.circular(40),
           boxShadow: [
             BoxShadow(
@@ -32,7 +32,7 @@ class PrimaryButton extends StatelessWidget {
             ),
           ],
         ),
-        padding: const EdgeInsets.symmetric(horizontal:PaddingSizes.xxSmall),
+        padding: const EdgeInsets.symmetric(horizontal: PaddingSizes.xxSmall),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -42,27 +42,27 @@ class PrimaryButton extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color:AppColors.white,
-                  fontWeight: FontWeight.bold, 
+                style: TextStyle(
+                  color: colorScheme.onPrimary,
+                  fontWeight: FontWeight.bold,
                   fontSize: AppFontSizes.sm,
                   height: 2.2,
                 ),
               ),
             ),
-            const SizedBox(width:Spacing.medium),
-
+            const SizedBox(width: Spacing.medium),
             Container(
-              height:Spacing.xxLarge,
+              height: Spacing.xxLarge,
               width: Spacing.xxLarge,
               alignment: Alignment.center,
-              decoration: const BoxDecoration(
-                color:AppColors.white,
+              decoration: BoxDecoration(
+                color: colorScheme.onPrimary,
                 shape: BoxShape.circle,
               ),
-              child: const Icon(Icons.arrow_forward, 
-              color: AppColors.brightBlue, 
-              size:AppFontSizes.xl,
+              child: Icon(
+                Icons.arrow_forward,
+                color: colorScheme.primary,
+                size: AppFontSizes.xl,
               ),
             ),
           ],

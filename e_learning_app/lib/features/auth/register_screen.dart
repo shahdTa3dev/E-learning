@@ -17,6 +17,7 @@ class RegisterPage extends HookWidget {
   Widget build(BuildContext context) {
     final email = useTextEditingController();
     final password = useTextEditingController();
+    final isPasswordVisible = useState(false);
     final agreed = useState(false);
 
     final theme = Theme.of(context);
@@ -46,35 +47,35 @@ class RegisterPage extends HookWidget {
                 const SizedBox(height: Spacing.xxxLarge),
 
                 Align(
-                  alignment: Alignment.centerLeft,
+                  alignment: AlignmentDirectional.centerStart,
                   child: Text(
                     tr.getting_started,
                     style: AppTextStyles.title.copyWith(
                       color: colorScheme.onSurface,
                     ),
+                    textAlign: TextAlign.start,
                   ),
                 ),
                 const SizedBox(height: Spacing.small),
 
                 Align(
-                  alignment: Alignment.centerLeft,
+                  alignment: AlignmentDirectional.centerStart,
                   child: Text(
                     tr.register_subtitle,
                     style: AppTextStyles.body.copyWith(
                       color: colorScheme.onSurfaceVariant,
                     ),
-                    textAlign: TextAlign.left,
+                    textAlign: TextAlign.start,
                   ),
                 ),
                 const SizedBox(height: Spacing.xxLarge),
 
-                TextField(
+                TextFormField(
                   controller: email,
+                  keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.email_outlined),
                     hintText: tr.email,
-                    filled: true,
-                    fillColor: colorScheme.onPrimary,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide.none,
@@ -83,17 +84,26 @@ class RegisterPage extends HookWidget {
                 ),
                 const SizedBox(height: Spacing.large),
 
-                TextField(
+                TextFormField(
                   controller: password,
-                  obscureText: true,
+                  obscureText: !isPasswordVisible.value,
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.lock_outline),
                     hintText: tr.password,
-                    filled: true,
-                    fillColor: colorScheme.onPrimary,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide.none,
+                    ),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        isPasswordVisible.value
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                        color: colorScheme.onSurface,
+                      ),
+                      onPressed: () {
+                        isPasswordVisible.value = !isPasswordVisible.value;
+                      },
                     ),
                   ),
                 ),
@@ -121,7 +131,7 @@ class RegisterPage extends HookWidget {
                   text: tr.sign_up,
                   onPressed: () {
                     if (agreed.value) {
-                      // Handle registration
+                      // Handle registration logic here
                     }
                   },
                 ),
@@ -131,7 +141,7 @@ class RegisterPage extends HookWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "${tr.skip} ",
+                      "${tr.have_acount} ",
                       style: TextStyle(color: colorScheme.onSurface),
                     ),
                     GestureDetector(

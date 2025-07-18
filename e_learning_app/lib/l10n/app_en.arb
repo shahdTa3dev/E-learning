@@ -29,5 +29,7 @@
   "introDesc2": "Take control of your learning schedule at your own pace.",
   "introTitle3": "Get Certified",
   "introDesc3": "Earn official certificates to boost your career.",
-  "getStarted": "Get Started"
+  "getStarted": "Get Started",
+  "have_acount": "Already have an Account?",
+  "dont_have_acount":"Don’t have an Account?"
 }

@@ -98,4 +98,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get getStarted => 'لنبدأ';
+
+  @override
+  String get have_acount => 'لديك بالفعل حساب مسبقاً؟';
+
+  @override
+  String get dont_have_acount => 'ليس لديك اي حساب ؟';
 }

@@ -277,6 +277,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Get Started'**
   String get getStarted;
+
+  /// No description provided for @have_acount.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an Account?'**
+  String get have_acount;
+
+  /// No description provided for @dont_have_acount.
+  ///
+  /// In en, this message translates to:
+  /// **'Don’t have an Account?'**
+  String get dont_have_acount;
 }
 
 class _AppLocalizationsDelegate
